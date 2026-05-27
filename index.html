@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      name="description"
+      content="QuranDesk is an offline desktop app for listening to complete Qur'an recitations from different reciters on Windows, macOS, and Linux."
+    />
+    <meta property="og:title" content="QuranDesk" />
+    <meta
+      property="og:description"
+      content="A quiet offline listening room for complete Qur'an recitations."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://qurandesk.ebeesolutions.com/" />
+    <meta
+      property="og:image"
+      content="https://qurandesk.ebeesolutions.com/assets/icon.png"
+    />
+    <link rel="canonical" href="https://qurandesk.ebeesolutions.com/" />
+    <link rel="icon" href="assets/icon.png" />
+    <link
+      rel="preload"
+      href="assets/fonts/Poppins-Regular.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="assets/fonts/Poppins-SemiBold.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script>
+      const savedTheme = localStorage.getItem("qurandesk-site-theme");
+      const prefersDark = matchMedia("(prefers-color-scheme: dark)").matches;
+      let theme;
+      if (savedTheme === "light" || savedTheme === "dark") {
+        theme = savedTheme;
+      } else {
+        theme = prefersDark ? "dark" : "light";
+      }
+      document.documentElement.dataset.theme = theme;
+    </script>
+    <title>QuranDesk | Offline Qur'an recitation player</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" data-elevated="false">
+      <nav class="nav" aria-label="Primary navigation">
+        <a class="brand" href="#top" aria-label="QuranDesk home">
+          <img src="assets/logo.svg" alt="" width="36" height="36" />
+          <span>QuranDesk</span>
+        </a>
+        <div class="nav-links">
+          <a href="#features">Features</a>
+          <a href="#downloads">Downloads</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="nav-actions">
+          <button
+            class="icon-button"
+            type="button"
+            data-theme-toggle
+            aria-label="Switch theme"
+          >
+            <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="4" />
+              <path
+                d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19"
+              />
+            </svg>
+            <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20 15.5A8.5 8.5 0 0 1 8.5 4 7 7 0 1 0 20 15.5Z" />
+            </svg>
+          </button>
+          <a class="button button-small" href="#downloads">Download</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Offline desktop Qur'an recitations</p>
+          <h1 id="hero-title">QuranDesk</h1>
+          <p class="hero-lede">
+            A quiet listening room for complete Qur'an recitations. Choose a
+            reciter, download surahs to your computer, and keep listening
+            without an internet connection.
+          </p>
+          <div class="hero-actions" aria-label="Primary actions">
+            <a class="button" href="#downloads" data-primary-download
+              >Download for your OS</a
+            >
+            <a class="button button-ghost" href="#features">See how it works</a>
+          </div>
+          <dl class="hero-facts" aria-label="QuranDesk highlights">
+            <div>
+              <dt>Offline</dt>
+              <dd>after download</dd>
+            </div>
+            <div>
+              <dt>Complete</dt>
+              <dd>reciter collections</dd>
+            </div>
+            <div>
+              <dt>Private</dt>
+              <dd>focused listening</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div
+          class="product-scene"
+          aria-label="Preview of the QuranDesk desktop application"
+        >
+          <div class="window">
+            <div class="window-rail">
+              <div class="window-brand">
+                <img src="assets/logo.svg" alt="" width="28" height="28" />
+                <span>QuranDesk</span>
+              </div>
+              <a class="rail-active" href="#features">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="12" cy="8" r="4" />
+                  <path d="M4 21c0-4 4-6 8-6s8 2 8 6" />
+                </svg>
+                Reciters
+              </a>
+              <a href="#downloads">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M4 14a8 8 0 0 1 15.5-2.5A4.5 4.5 0 0 1 18 20H7a4 4 0 0 1-3-6Z"
+                  />
+                </svg>
+                Downloads
+              </a>
+              <a href="#faq">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="12" cy="12" r="3" />
+                  <path
+                    d="M19 15a2 2 0 0 0 .5 2l.2.2a2 2 0 1 1-2.8 2.8l-.2-.2a2 2 0 0 0-2-.5 2 2 0 0 0-1.2 1.8V21a2 2 0 1 1-4 0v-.3a2 2 0 0 0-1.2-1.8 2 2 0 0 0-2 .5l-.2.2a2 2 0 1 1-2.8-2.8l.2-.2a2 2 0 0 0 .5-2 2 2 0 0 0-1.8-1.2H3a2 2 0 1 1 0-4h.3A2 2 0 0 0 5 8.2a2 2 0 0 0-.5-2l-.2-.2a2 2 0 1 1 2.8-2.8l.2.2a2 2 0 0 0 2 .5A2 2 0 0 0 10.5 2H11a2 2 0 1 1 4 0v.3a2 2 0 0 0 1.2 1.8 2 2 0 0 0 2-.5l.2-.2a2 2 0 1 1 2.8 2.8l-.2.2a2 2 0 0 0-.5 2A2 2 0 0 0 22 10h.3a2 2 0 1 1 0 4H22A2 2 0 0 0 19 15Z"
+                  />
+                </svg>
+                Settings
+              </a>
+            </div>
+            <div class="window-main">
+              <div class="window-toolbar">
+                <div>
+                  <span class="section-kicker">Reciters</span>
+                  <strong>Choose a voice for the day</strong>
+                </div>
+                <label class="search">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="11" cy="11" r="7" />
+                    <path d="m21 21-4.3-4.3" />
+                  </svg>
+                  <span>Search reciters</span>
+                  <input type="hidden" />
+                </label>
+              </div>
+              <div class="reciter-grid">
+                <article class="reciter-card">
+                  <div class="avatar avatar-one">A</div>
+                  <strong>Abdul Basit</strong>
+                  <span>1.7 GB · 114 / 114</span>
+                </article>
+                <article class="reciter-card">
+                  <div class="avatar avatar-two">M</div>
+                  <strong>Mishary Alafasy</strong>
+                  <span>2.1 GB · 28 on disk</span>
+                </article>
+                <article class="reciter-card">
+                  <div class="avatar avatar-three">S</div>
+                  <strong>Saad Al-Ghamdi</strong>
+                  <span>1.9 GB · not downloaded</span>
+                </article>
+              </div>
+              <div class="player">
+                <div class="player-track">
+                  <span class="arabic" dir="rtl">الفاتحة</span>
+                  <div>
+                    <strong>Al-Fatihah</strong>
+                    <span>Abdul Basit</span>
+                  </div>
+                </div>
+                <div class="player-controls" aria-hidden="true">
+                  <span></span>
+                  <button type="button" tabindex="-1">
+                    <svg viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </button>
+                  <span></span>
+                </div>
+                <div class="progress"><span></span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="feature-band"
+        id="features"
+        aria-labelledby="features-title"
+      >
+        <div class="section-heading">
+          <p class="eyebrow">Built for focused listening</p>
+          <h2 id="features-title">Download once. Listen calmly.</h2>
+        </div>
+        <div class="feature-grid">
+          <article>
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 3v12M7 10l5 5 5-5" />
+                <path d="M5 21h14" />
+              </svg>
+            </div>
+            <h3>Offline recitations</h3>
+            <p>
+              Download individual surahs or a full reciter set, then play from
+              local storage.
+            </p>
+          </article>
+          <article>
+            <div class="feature-icon feature-icon-warm">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9 19V5l10-2v14" />
+                <circle cx="6" cy="19" r="3" />
+                <circle cx="16" cy="17" r="3" />
+              </svg>
+            </div>
+            <h3>Simple playback</h3>
+            <p>
+              Use repeat, speed control, previous/next surah, and resume from
+              your last position.
+            </p>
+          </article>
+          <article>
+            <div class="feature-icon feature-icon-green">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M4 12a8 8 0 0 1 16 0v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"
+                />
+                <path d="M9 12h6" />
+              </svg>
+            </div>
+            <h3>Desktop native</h3>
+            <p>
+              Runs as a dedicated app on Windows, macOS, and Linux with
+              automatic updates.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="split-section" aria-labelledby="experience-title">
+        <div>
+          <p class="eyebrow">A small app with a clear job</p>
+          <h2 id="experience-title">No browser tabs. No streaming anxiety.</h2>
+          <p>
+            QuranDesk keeps your catalog, download queue, storage usage, and
+            playback settings in one focused desktop space. The interface
+            follows your operating system theme by default, and the website does
+            the same.
+          </p>
+        </div>
+        <ul class="check-list" aria-label="Application capabilities">
+          <li>Browse reciters and search by name or style.</li>
+          <li>Download all 114 surahs or keep only the ones you need.</li>
+          <li>Recover cleanly if an audio file is moved or deleted.</li>
+          <li>Refresh the library when new reciters are added.</li>
+        </ul>
+      </section>
+
+      <section
+        class="download-band"
+        id="downloads"
+        aria-labelledby="downloads-title"
+      >
+        <div class="section-heading">
+          <p class="eyebrow">Downloads</p>
+          <h2 id="downloads-title">Get QuranDesk for your desktop</h2>
+          <p data-release-status>Checking the latest public release...</p>
+        </div>
+        <div class="download-grid">
+          <article class="download-card" data-platform-card="windows">
+            <div class="download-icon" aria-hidden="true">Win</div>
+            <h3>Windows</h3>
+            <p>NSIS installer for 64-bit Windows.</p>
+            <a
+              class="button download-link"
+              data-platform="windows"
+              href="https://github.com/ebeeraheem/qurandesk-electron/releases/latest"
+              >Download for Windows</a
+            >
+          </article>
+          <article class="download-card" data-platform-card="mac">
+            <div class="download-icon" aria-hidden="true">Mac</div>
+            <h3>macOS</h3>
+            <p>DMG build for Apple Silicon Macs.</p>
+            <a
+              class="button download-link"
+              data-platform="mac"
+              href="https://github.com/ebeeraheem/qurandesk-electron/releases/latest"
+              >Download for macOS</a
+            >
+          </article>
+          <article class="download-card" data-platform-card="linux">
+            <div class="download-icon" aria-hidden="true">Lin</div>
+            <h3>Linux</h3>
+            <p>AppImage first, with Debian package support when available.</p>
+            <a
+              class="button download-link"
+              data-platform="linux"
+              href="https://github.com/ebeeraheem/qurandesk-electron/releases/latest"
+              >Download for Linux</a
+            >
+          </article>
+        </div>
+        <p class="download-note">
+          Prefer a different package? Visit
+          <a
+            href="https://github.com/ebeeraheem/qurandesk-electron/releases/latest"
+            >all release assets</a
+          >.
+        </p>
+      </section>
+
+      <section class="faq-section" id="faq" aria-labelledby="faq-title">
+        <div class="section-heading">
+          <p class="eyebrow">Details</p>
+          <h2 id="faq-title">Questions people usually ask first</h2>
+        </div>
+        <div class="faq-list">
+          <details>
+            <summary>Does QuranDesk work without internet?</summary>
+            <p>
+              Yes. You need internet to refresh the catalog and download
+              recitations. After that, downloaded surahs play from your
+              computer.
+            </p>
+          </details>
+          <details>
+            <summary>Where are downloads stored?</summary>
+            <p>
+              QuranDesk keeps audio files in its application data folder and
+              includes a settings shortcut to reveal that folder in your file
+              explorer.
+            </p>
+          </details>
+          <details>
+            <summary>Who builds QuranDesk?</summary>
+            <p>
+              QuranDesk is built by Ebee Solutions, a technology studio in Kano,
+              Nigeria creating useful digital products for local and global
+              communities.
+            </p>
+          </details>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div>
+        <a class="brand" href="#top">
+          <img src="assets/logo.svg" alt="" width="32" height="32" />
+          <span>QuranDesk</span>
+        </a>
+        <p>
+          A quiet offline Qur'an recitation player by
+          <a href="https://ebeesolutions.com">Ebee Solutions</a>.
+        </p>
+      </div>
+      <nav aria-label="Footer navigation">
+        <a
+          href="https://github.com/ebeeraheem/qurandesk-electron/releases/latest"
+          >Releases</a
+        >
+      </nav>
+    </footer>
+
+    <script src="script.js" type="module"></script>
+  </body>
+</html>
