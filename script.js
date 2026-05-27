@@ -1,21 +1,5 @@
 const releaseRepo = 'ebeeraheem/qurandesk-electron'
 const releasesUrl = `https://github.com/${releaseRepo}/releases/latest`
-const fallbackVersion = '0.2.7'
-
-const fallbackDownloads = {
-  windows: {
-    url: `https://github.com/${releaseRepo}/releases/latest/download/qurandesk-${fallbackVersion}-setup.exe`,
-    label: `Download for Windows`
-  },
-  mac: {
-    url: `https://github.com/${releaseRepo}/releases/latest/download/qurandesk-${fallbackVersion}.dmg`,
-    label: `Download for macOS`
-  },
-  linux: {
-    url: `https://github.com/${releaseRepo}/releases/latest/download/qurandesk-${fallbackVersion}.AppImage`,
-    label: `Download for Linux`
-  }
-}
 
 const platformPatterns = {
   windows: [/setup\.exe$/i, /\.exe$/i],
@@ -35,7 +19,6 @@ if (platform) {
   document.querySelector(`[data-platform-card="${platform}"]`)?.classList.add('is-detected')
 }
 
-setFallbackDownloads()
 await hydrateReleaseDownloads()
 
 themeToggle?.addEventListener('click', () => {
@@ -61,27 +44,6 @@ function detectPlatform() {
   if (hints.includes('mac')) return 'mac'
   if (hints.includes('linux') || hints.includes('x11')) return 'linux'
   return null
-}
-
-function setFallbackDownloads() {
-  for (const link of downloadLinks) {
-    const key = link.dataset.platform
-    const fallback = fallbackDownloads[key]
-    if (!fallback) continue
-    link.href = fallback.url
-    link.textContent = fallback.label
-  }
-
-  const primary = platform ? fallbackDownloads[platform] : null
-  if (primaryDownload && primary) {
-    primaryDownload.href = primary.url
-    primaryDownload.textContent = primary.label
-  }
-
-  if (releaseStatus) {
-    releaseStatus.textContent =
-      'Showing the latest download links. If a download is unavailable, see all files below.'
-  }
 }
 
 async function hydrateReleaseDownloads() {
@@ -123,27 +85,9 @@ async function hydrateReleaseDownloads() {
     }
   } catch (error) {
     console.error('Failed to fetch release info:', error)
-    for (const link of downloadLinks) {
-      link.addEventListener(
-        'click',
-        (event) => {
-          if (!link.href.includes('/download/')) return
-          event.preventDefault()
-          globalThis.location.href = releasesUrl
-        },
-        { once: true }
-      )
-    }
-
-    if (primaryDownload) {
-      primaryDownload.addEventListener(
-        'click',
-        (event) => {
-          event.preventDefault()
-          globalThis.location.href = platform ? fallbackDownloads[platform].url : releasesUrl
-        },
-        { once: true }
-      )
+    if (releaseStatus) {
+      releaseStatus.textContent =
+        'Could not load the latest release details. The download buttons will take you to the releases page.'
     }
   }
 }
