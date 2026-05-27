@@ -80,7 +80,7 @@ function setFallbackDownloads() {
 
   if (releaseStatus) {
     releaseStatus.textContent =
-      'Using release download links. If a direct asset is unavailable, open all release assets below.'
+      'Showing the latest download links. If a download is unavailable, see all files below.'
   }
 }
 
@@ -103,7 +103,7 @@ async function hydrateReleaseDownloads() {
       const asset = resolved[key]
       if (!asset) continue
       link.href = asset.browser_download_url
-      link.textContent = `Download ${asset.name}`
+      link.textContent = `Download for ${platformName(key)}`
     }
 
     if (primaryDownload && platform && resolved[platform]) {
@@ -119,7 +119,7 @@ async function hydrateReleaseDownloads() {
             year: 'numeric'
           }).format(new Date(release.published_at))
         : 'latest'
-      releaseStatus.textContent = `Latest release: ${release.tag_name ?? 'QuranDesk'} · ${published}`
+      releaseStatus.textContent = `Latest version: ${release.tag_name ?? 'QuranDesk'} · ${published}`
     }
   } catch (error) {
     console.error('Failed to fetch release info:', error)

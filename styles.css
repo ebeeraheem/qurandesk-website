@@ -770,8 +770,12 @@ h3 {
   border-radius: 8px;
   background: var(--surface-strong);
   color: var(--primary);
-  font-size: 0.78rem;
-  font-weight: 800;
+}
+
+.download-icon svg {
+  width: 28px;
+  height: 28px;
+  fill: currentColor;
 }
 
 .download-link {
