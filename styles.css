@@ -418,36 +418,16 @@ h3 {
   min-width: 0;
 }
 
-.browser-frame {
-  margin: 0;
-  min-width: 0;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  background: var(--bg);
-  box-shadow: var(--shadow);
-}
-
-.browser-bar {
-  display: flex;
-  gap: 0.45rem;
-  border-bottom: 1px solid var(--border);
-  background: var(--surface);
-  padding: 0.85rem 1rem;
-}
-
-.browser-bar span {
-  width: 11px;
-  height: 11px;
-  border-radius: 999px;
-  background: var(--faint);
-}
-
+/* Screenshots already include their own device frame, so we just
+   round the corners slightly and add a soft shadow. */
 .shot {
   position: relative;
+  margin: 0;
   overflow: hidden;
+  border-radius: var(--radius);
   background:
     linear-gradient(150deg, color-mix(in srgb, var(--primary) 22%, var(--surface)), var(--surface));
+  box-shadow: var(--shadow);
 }
 
 .shot::after {
@@ -470,40 +450,32 @@ h3 {
 .shot img {
   position: relative;
   z-index: 1;
+  display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  border-radius: inherit;
 }
 
+/* Desktop screenshot is the base of the hero scene. The aspect-ratio
+   only sizes the branded placeholder before a real image is added. */
 .shot-desktop {
   aspect-ratio: 16 / 10;
 }
 
+/* Phone screenshot overlaps the bottom-right of the desktop shot. */
 .shot-phone {
-  aspect-ratio: 9 / 19.3;
-  border-radius: 24px;
-}
-
-.phone-frame {
   position: absolute;
-  right: -8px;
+  right: 0;
   bottom: -28px;
-  width: min(34%, 210px);
-  margin: 0;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 30px;
-  background: #040c23;
-  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.34);
-  padding: 0.55rem;
+  width: min(30%, 188px);
+  aspect-ratio: 1080 / 2340;
+  border-radius: 26px;
 }
 
-.phone-notch {
-  display: block;
-  width: 40%;
-  height: 5px;
-  margin: 0.1rem auto 0.5rem;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.28);
+.shot-phone-static {
+  position: static;
+  width: min(100%, 260px);
+  margin-inline: auto;
 }
 
 /* ---------- Section rhythm ---------- */
@@ -614,17 +586,6 @@ h3 {
   gap: clamp(1.5rem, 4vw, 3rem);
 }
 
-.showcase-grid .phone-frame {
-  width: min(100%, 260px);
-}
-
-.phone-frame-static {
-  position: static;
-  inset: auto;
-  margin-inline: auto;
-  box-shadow: var(--shadow);
-}
-
 /* ---------- Split section (used on subpages) ---------- */
 
 .split-section {
@@ -647,6 +608,16 @@ h3 {
 .text-link {
   display: inline-flex;
   margin-top: 0.9rem;
+}
+
+/* Buttons keep their own text color even inside .page-main, where bare
+   links are tinted with the primary color. */
+.page-main a.button {
+  color: #fff;
+}
+
+.page-main a.button-ghost {
+  color: var(--fg);
 }
 
 .check-list {
@@ -935,7 +906,7 @@ h3 {
     padding-bottom: 2rem;
   }
 
-  .showcase-grid .phone-frame {
+  .showcase-grid .shot-phone-static {
     width: min(100%, 280px);
   }
 }
@@ -990,7 +961,7 @@ h3 {
     gap: 0.45rem;
   }
 
-  .phone-frame {
+  .shot-phone {
     position: static;
     width: min(100%, 240px);
     margin: 1.25rem auto 0;
