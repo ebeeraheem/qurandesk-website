@@ -41,7 +41,8 @@
       type="font/ttf"
       crossorigin
     />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles/base.css" />
+    <link rel="stylesheet" href="styles/subpages.css" />
     <script>
       const savedTheme = localStorage.getItem("qurandesk-site-theme");
       const prefersDark = matchMedia("(prefers-color-scheme: dark)").matches;
@@ -254,6 +255,7 @@
       </nav>
     </footer>
 
-    <script src="script.js" type="module"></script>
+    <script src="scripts/ui.js" type="module"></script>
+    <script src="scripts/downloads.js" type="module"></script>
   </body>
 </html>

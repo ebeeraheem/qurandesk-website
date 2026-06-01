@@ -1,9 +1,15 @@
+/* ============================================================
+   base.css — shared foundation loaded on every page
+   Design tokens, reset, typography, header/nav, buttons,
+   footer, shared components (download cards, FAQ), utilities.
+   ============================================================ */
+
 @font-face {
   font-family: 'Poppins';
   font-weight: 400;
   font-style: normal;
   font-display: swap;
-  src: url('assets/fonts/Poppins-Regular.ttf') format('truetype');
+  src: url('../assets/fonts/Poppins-Regular.ttf') format('truetype');
 }
 
 @font-face {
@@ -11,7 +17,7 @@
   font-weight: 500;
   font-style: normal;
   font-display: swap;
-  src: url('assets/fonts/Poppins-Medium.ttf') format('truetype');
+  src: url('../assets/fonts/Poppins-Medium.ttf') format('truetype');
 }
 
 @font-face {
@@ -19,7 +25,7 @@
   font-weight: 600;
   font-style: normal;
   font-display: swap;
-  src: url('assets/fonts/Poppins-SemiBold.ttf') format('truetype');
+  src: url('../assets/fonts/Poppins-SemiBold.ttf') format('truetype');
 }
 
 @font-face {
@@ -27,7 +33,7 @@
   font-weight: 700;
   font-style: normal;
   font-display: swap;
-  src: url('assets/fonts/Poppins-Bold.ttf') format('truetype');
+  src: url('../assets/fonts/Poppins-Bold.ttf') format('truetype');
 }
 
 @font-face {
@@ -35,7 +41,7 @@
   font-weight: 700;
   font-style: normal;
   font-display: swap;
-  src: url('assets/fonts/Amiri-Bold.ttf') format('truetype');
+  src: url('../assets/fonts/Amiri-Bold.ttf') format('truetype');
 }
 
 :root {
@@ -149,6 +155,8 @@ input {
   transform: translateY(0);
 }
 
+/* ---------- Header ---------- */
+
 .site-header {
   position: sticky;
   top: 0;
@@ -162,6 +170,7 @@ input {
   border-color: var(--border);
 }
 
+/* Centered content width shared by every top-level section wrapper. */
 .nav,
 .hero,
 .feature-band,
@@ -217,6 +226,8 @@ input {
   background: var(--elev);
   color: var(--fg);
 }
+
+/* ---------- Buttons ---------- */
 
 .button {
   display: inline-flex;
@@ -290,28 +301,7 @@ input {
   display: none;
 }
 
-/* ---------- Hero ---------- */
-
-.hero {
-  display: grid;
-  grid-template-columns: minmax(0, 0.92fr) minmax(440px, 1.08fr);
-  align-items: center;
-  gap: clamp(2rem, 5vw, 4.5rem);
-  padding: clamp(3rem, 7vw, 5.5rem) 0 clamp(3rem, 6vw, 5rem);
-}
-
-.hero-copy {
-  max-width: 640px;
-}
-
-.eyebrow {
-  margin: 0 0 0.85rem;
-  color: var(--primary);
-  font-size: 0.76rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
+/* ---------- Typography ---------- */
 
 h1,
 h2,
@@ -345,6 +335,15 @@ h3 {
   line-height: 1.25;
 }
 
+.eyebrow {
+  margin: 0 0 0.85rem;
+  color: var(--primary);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
 .hero-lede,
 .section-heading p,
 .split-section p,
@@ -359,138 +358,6 @@ h3 {
   color: var(--muted);
 }
 
-.hero-lede {
-  max-width: 48ch;
-  margin-bottom: 1.6rem;
-  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
-}
-
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.8rem;
-  margin-bottom: 1.8rem;
-}
-
-.trust-strip {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 0.6rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.trust-strip li {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: var(--elev);
-  color: var(--fg);
-  font-size: 0.82rem;
-  font-weight: 600;
-  padding: 0.34rem 0.8rem;
-}
-
-.trust-strip li::before {
-  content: '';
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--primary);
-}
-
-.studio-link {
-  display: inline-flex;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--primary) 12%, transparent);
-  color: var(--primary);
-  font-weight: 700;
-  padding: 0.04rem 0.45rem;
-}
-
-/* ---------- Device frames (real screenshots) ---------- */
-
-.product-scene {
-  position: relative;
-  min-width: 0;
-}
-
-/* Screenshots already include their own device frame, so we just
-   round the corners slightly and add a soft shadow. */
-.shot {
-  position: relative;
-  margin: 0;
-  overflow: hidden;
-  border-radius: var(--radius);
-  background:
-    linear-gradient(150deg, color-mix(in srgb, var(--primary) 22%, var(--surface)), var(--surface));
-  box-shadow:
-      0 0 0 1px var(--border),
-      0 26px 60px rgba(0, 0, 0, 0.34);
-}
-
-.shot::after {
-  content: attr(data-label);
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  padding: 1.5rem;
-  color: var(--primary-deep);
-  font-weight: 700;
-  font-size: 0.95rem;
-  text-align: center;
-}
-
-[data-theme='dark'] .shot::after {
-  color: var(--fg);
-}
-
-.shot img {
-  position: relative;
-  z-index: 1;
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: inherit;
-}
-
-/* Desktop screenshot is the base of the hero scene. The aspect-ratio
-   only sizes the branded placeholder before a real image is added. */
-.shot-desktop {
-  aspect-ratio: 16 / 9;
-}
-
-/* Phone screenshot overlaps the bottom-right of the desktop shot. */
-.shot-phone {
-  position: absolute;
-  right: 0;
-  bottom: -28px;
-  width: min(30%, 188px);
-  aspect-ratio: 1080 / 2340;
-  border-radius: 26px;
-  z-index: 2;
-}
-
-.shot-phone-static {
-  position: static;
-  width: min(100%, 260px);
-  margin-inline: auto;
-}
-
-/* ---------- Section rhythm ---------- */
-
-.feature-band,
-.split-section,
-.download-band,
-.faq-section,
-.showcase {
-  padding: clamp(3.5rem, 8vw, 6.5rem) 0;
-}
-
 .section-heading {
   max-width: 720px;
   margin-bottom: 2.4rem;
@@ -500,104 +367,16 @@ h3 {
   max-width: 60ch;
 }
 
-/* ---------- Features ---------- */
-
-.feature-grid,
-.download-grid,
-.support-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+/* Vertical rhythm shared by the main content bands. */
+.feature-band,
+.split-section,
+.download-band,
+.faq-section,
+.showcase {
+  padding: clamp(3.5rem, 8vw, 6.5rem) 0;
 }
 
-.feature-grid-six {
-  gap: 1.1rem;
-}
-
-.feature-grid article,
-.download-card,
-.faq-list details,
-.support-grid article,
-.studio-card {
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: color-mix(in srgb, var(--bg) 80%, var(--surface));
-}
-
-.feature-grid article,
-.download-card,
-.support-grid article,
-.studio-card {
-  padding: 1.5rem;
-}
-
-.feature-grid article {
-  transition:
-    transform 160ms ease,
-    box-shadow 160ms ease;
-}
-
-.feature-grid article:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 18px 40px rgba(45, 19, 86, 0.1);
-}
-
-.feature-grid p,
-.download-card p,
-.support-grid p {
-  margin-bottom: 0;
-  font-size: 0.95rem;
-}
-
-.feature-icon {
-  display: grid;
-  width: 46px;
-  height: 46px;
-  place-items: center;
-  margin-bottom: 1rem;
-  border-radius: var(--radius);
-  background: color-mix(in srgb, var(--primary) 13%, transparent);
-  color: var(--primary);
-}
-
-.feature-icon-warm {
-  background: color-mix(in srgb, var(--warm) 16%, transparent);
-  color: var(--warm);
-}
-
-.feature-icon-green {
-  background: color-mix(in srgb, var(--cyan) 14%, transparent);
-  color: var(--cyan);
-}
-
-.feature-icon svg {
-  width: 23px;
-  height: 23px;
-  fill: none;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 2;
-}
-
-/* ---------- Showcase ---------- */
-
-.showcase-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.6fr) minmax(0, 0.7fr);
-  align-items: center;
-  gap: clamp(1.5rem, 4vw, 3rem);
-}
-
-/* ---------- Split section (used on subpages) ---------- */
-
-.split-section {
-  display: grid;
-  grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.75fr);
-  gap: clamp(2rem, 6vw, 5rem);
-  align-items: start;
-}
-
+/* Bare links get a primary tint; buttons keep their own color. */
 .text-link,
 .download-note a,
 .footer a:hover,
@@ -613,8 +392,6 @@ h3 {
   margin-top: 0.9rem;
 }
 
-/* Buttons keep their own text color even inside .page-main, where bare
-   links are tinted with the primary color. */
 .page-main a.button {
   color: #fff;
 }
@@ -623,39 +400,7 @@ h3 {
   color: var(--fg);
 }
 
-.check-list {
-  display: grid;
-  gap: 0.8rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.check-list li {
-  position: relative;
-  border-bottom: 1px solid var(--border);
-  padding: 0 0 0.8rem 2rem;
-  color: var(--fg);
-  font-weight: 600;
-}
-
-.check-list li::before {
-  position: absolute;
-  left: 0;
-  top: 0.1rem;
-  display: grid;
-  place-items: center;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: color-mix(in srgb, var(--primary) 15%, transparent);
-  color: var(--primary);
-  content: '\2713';
-  font-size: 0.82rem;
-  font-weight: 800;
-}
-
-/* ---------- Downloads ---------- */
+/* ---------- Download cards (home + downloads page) ---------- */
 
 .download-band {
   border-block: 1px solid var(--border);
@@ -691,11 +436,30 @@ h3 {
   color: var(--muted);
 }
 
+.download-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.download-grid-two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .download-card {
   display: flex;
   min-height: 250px;
   flex-direction: column;
   align-items: start;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--bg) 80%, var(--surface));
+  padding: 1.5rem;
+}
+
+.download-card p {
+  margin-bottom: 0;
+  font-size: 0.95rem;
 }
 
 .download-card.is-detected {
@@ -725,73 +489,12 @@ h3 {
   margin-top: auto;
 }
 
-.download-grid-two {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
 .download-note {
   margin: 1.4rem 0 0;
   font-size: 0.9rem;
 }
 
-/* ---------- Studio card (subpages) ---------- */
-
-.studio-card {
-  align-self: stretch;
-}
-
-.studio-card span {
-  display: inline-flex;
-  margin-bottom: 0.75rem;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--primary) 12%, transparent);
-  color: var(--primary);
-  font-size: 0.78rem;
-  font-weight: 800;
-  padding: 0.28rem 0.6rem;
-}
-
-.studio-card strong {
-  display: block;
-  margin-bottom: 0.65rem;
-  font-size: clamp(1.4rem, 2.4vw, 2rem);
-  line-height: 1.15;
-}
-
-.studio-card p {
-  margin-bottom: 0;
-  color: var(--muted);
-}
-
-/* ---------- Privacy callout ---------- */
-
-.privacy-callout {
-  padding-bottom: clamp(3.5rem, 8vw, 6.5rem);
-}
-
-.privacy-callout-inner {
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  background:
-    linear-gradient(150deg, color-mix(in srgb, var(--primary) 12%, var(--bg)), var(--bg) 65%);
-  padding: clamp(2rem, 5vw, 3.5rem);
-  text-align: center;
-}
-
-.privacy-callout-inner .eyebrow {
-  margin-bottom: 0.6rem;
-}
-
-.privacy-callout-inner h2 {
-  margin-bottom: 0.5rem;
-}
-
-.privacy-callout-inner p {
-  margin: 0 auto;
-  max-width: 40ch;
-}
-
-/* ---------- FAQ ---------- */
+/* ---------- FAQ (home + support page) ---------- */
 
 .faq-list {
   display: grid;
@@ -799,6 +502,9 @@ h3 {
 }
 
 .faq-list details {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--bg) 80%, var(--surface));
   padding: 1.1rem 1.2rem;
 }
 
@@ -838,99 +544,25 @@ h3 {
   font-weight: 600;
 }
 
-/* ---------- Subpages ---------- */
-
-.page-main {
-  padding: clamp(3rem, 8vw, 6rem) 0;
+.studio-link {
+  display: inline-flex;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--primary) 12%, transparent);
+  color: var(--primary);
+  font-weight: 700;
+  padding: 0.04rem 0.45rem;
 }
 
-.page-hero {
-  max-width: 820px;
-  margin-bottom: 2.4rem;
-}
-
-.page-hero h1 {
-  font-size: clamp(2.6rem, 5vw, 4rem);
-}
-
-.page-hero p {
-  max-width: 65ch;
-  font-size: 1.05rem;
-}
-
-.updated {
-  margin-top: 1rem;
-  font-size: 0.9rem;
-}
-
-.policy-content {
-  display: grid;
-  gap: 1rem;
-  max-width: 880px;
-}
-
-.policy-content section {
-  border-top: 1px solid var(--border);
-  padding-top: 1.4rem;
-}
-
-.policy-content h2,
-.support-grid h2 {
-  font-size: 1.2rem;
-}
-
-.support-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.support-grid article {
-  min-height: 220px;
-}
-
-.compact-faq {
-  width: 100%;
-  padding-bottom: 0;
-}
-
-/* ---------- Responsive ---------- */
-
-@media (max-width: 1040px) {
-  .hero,
-  .split-section,
-  .showcase-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .hero {
-    padding-top: 2.6rem;
-  }
-
-  .product-scene {
-    padding-bottom: 2rem;
-  }
-
-  .showcase-grid .shot-phone-static {
-    width: min(100%, 280px);
-  }
-}
+/* ---------- Responsive (shared) ---------- */
 
 @media (max-width: 980px) {
   .nav-links {
     display: none;
   }
 
-  .feature-grid,
-  .feature-grid-six,
   .download-grid,
-  .download-grid-two,
-  .support-grid {
+  .download-grid-two {
     grid-template-columns: 1fr;
-  }
-}
-
-@media (min-width: 981px) {
-  .feature-grid-six {
-    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -958,16 +590,6 @@ h3 {
 
   h1 {
     font-size: clamp(2.5rem, 11vw, 3.6rem);
-  }
-
-  .trust-strip {
-    gap: 0.45rem;
-  }
-
-  .shot-phone {
-    position: static;
-    width: min(100%, 240px);
-    margin: 1.25rem auto 0;
   }
 
   .download-group-heading,

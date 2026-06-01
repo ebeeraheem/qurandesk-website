@@ -1,3 +1,6 @@
+// downloads.js — platform detection, store links, and desktop release
+// hydration. Loaded only on pages with download buttons (home + downloads).
+
 const releaseRepo = 'ebeeraheem/qurandesk-electron'
 const releasesUrl = `https://github.com/${releaseRepo}/releases/latest`
 
@@ -13,8 +16,6 @@ const platformPatterns = {
   linux: [/\.AppImage$/i, /\.deb$/i]
 }
 
-const header = document.querySelector('.site-header')
-const themeToggle = document.querySelector('[data-theme-toggle]')
 const releaseStatuses = [...document.querySelectorAll('[data-release-status]')]
 const desktopDownloadLinks = [...document.querySelectorAll('[data-desktop-platform]')]
 const storeLinks = [...document.querySelectorAll('[data-store-platform]')]
@@ -31,16 +32,6 @@ hydrateStoreLinks()
 if (desktopDownloadLinks.length > 0 || releaseStatuses.length > 0) {
   await hydrateReleaseDownloads()
 }
-
-themeToggle?.addEventListener('click', () => {
-  const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'
-  document.documentElement.dataset.theme = next
-  localStorage.setItem('qurandesk-site-theme', next)
-})
-
-document.addEventListener('scroll', () => {
-  header?.setAttribute('data-elevated', window.scrollY > 8 ? 'true' : 'false')
-})
 
 function detectPlatform() {
   const hints = [
