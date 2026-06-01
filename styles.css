@@ -427,7 +427,9 @@ h3 {
   border-radius: var(--radius);
   background:
     linear-gradient(150deg, color-mix(in srgb, var(--primary) 22%, var(--surface)), var(--surface));
-  box-shadow: var(--shadow);
+  box-shadow:
+      0 0 0 1px var(--border),
+      0 26px 60px rgba(0, 0, 0, 0.34);
 }
 
 .shot::after {
@@ -459,7 +461,7 @@ h3 {
 /* Desktop screenshot is the base of the hero scene. The aspect-ratio
    only sizes the branded placeholder before a real image is added. */
 .shot-desktop {
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 9;
 }
 
 /* Phone screenshot overlaps the bottom-right of the desktop shot. */
@@ -470,6 +472,7 @@ h3 {
   width: min(30%, 188px);
   aspect-ratio: 1080 / 2340;
   border-radius: 26px;
+  z-index: 2;
 }
 
 .shot-phone-static {
