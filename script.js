@@ -1,6 +1,12 @@
 const releaseRepo = 'ebeeraheem/qurandesk-electron'
 const releasesUrl = `https://github.com/${releaseRepo}/releases/latest`
 
+const mobileStoreUrls = {
+  android: 'https://play.google.com/store/apps/details?id=com.ebeesolutions.qurandesk',
+  // Replace this placeholder with the final App Store URL before deployment.
+  ios: 'https://apps.apple.com/app/qurandesk/id0000000000'
+}
+
 const platformPatterns = {
   windows: [/setup\.exe$/i, /\.exe$/i],
   mac: [/\.dmg$/i, /mac.*\.zip$/i, /\.zip$/i],
@@ -9,8 +15,9 @@ const platformPatterns = {
 
 const header = document.querySelector('.site-header')
 const themeToggle = document.querySelector('[data-theme-toggle]')
-const releaseStatus = document.querySelector('[data-release-status]')
-const downloadLinks = [...document.querySelectorAll('[data-platform]')]
+const releaseStatuses = [...document.querySelectorAll('[data-release-status]')]
+const desktopDownloadLinks = [...document.querySelectorAll('[data-desktop-platform]')]
+const storeLinks = [...document.querySelectorAll('[data-store-platform]')]
 const primaryDownload = document.querySelector('[data-primary-download]')
 
 const platform = detectPlatform()
@@ -19,7 +26,11 @@ if (platform) {
   document.querySelector(`[data-platform-card="${platform}"]`)?.classList.add('is-detected')
 }
 
-await hydrateReleaseDownloads()
+hydrateStoreLinks()
+
+if (desktopDownloadLinks.length > 0 || releaseStatuses.length > 0) {
+  await hydrateReleaseDownloads()
+}
 
 themeToggle?.addEventListener('click', () => {
   const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'
@@ -40,10 +51,33 @@ function detectPlatform() {
     .join(' ')
     .toLowerCase()
 
+  if (hints.includes('iphone') || hints.includes('ipad') || hints.includes('ipod')) return 'ios'
+  if (hints.includes('android')) return 'android'
   if (hints.includes('win')) return 'windows'
   if (hints.includes('mac')) return 'mac'
   if (hints.includes('linux') || hints.includes('x11')) return 'linux'
   return null
+}
+
+function hydrateStoreLinks() {
+  for (const link of storeLinks) {
+    const key = link.dataset.storePlatform
+    const url = mobileStoreUrls[key]
+    if (!url) continue
+
+    link.href = url
+    link.removeAttribute('aria-disabled')
+  }
+
+  if (!primaryDownload) return
+
+  if (platform === 'android' && mobileStoreUrls.android) {
+    primaryDownload.href = mobileStoreUrls.android
+    primaryDownload.textContent = 'Get QuranDesk for Android'
+  } else if (platform === 'ios' && mobileStoreUrls.ios) {
+    primaryDownload.href = mobileStoreUrls.ios
+    primaryDownload.textContent = 'Download QuranDesk for iOS'
+  }
 }
 
 async function hydrateReleaseDownloads() {
@@ -60,20 +94,20 @@ async function hydrateReleaseDownloads() {
     const assets = Array.isArray(release.assets) ? release.assets : []
     const resolved = resolveAssets(assets)
 
-    for (const link of downloadLinks) {
-      const key = link.dataset.platform
+    for (const link of desktopDownloadLinks) {
+      const key = link.dataset.desktopPlatform
       const asset = resolved[key]
       if (!asset) continue
       link.href = asset.browser_download_url
       link.textContent = `Download for ${platformName(key)}`
     }
 
-    if (primaryDownload && platform && resolved[platform]) {
+    if (primaryDownload && isDesktopPlatform(platform) && resolved[platform]) {
       primaryDownload.href = resolved[platform].browser_download_url
       primaryDownload.textContent = `Download for ${platformName(platform)}`
     }
 
-    if (releaseStatus) {
+    if (releaseStatuses.length > 0) {
       const published = release.published_at
         ? new Intl.DateTimeFormat(undefined, {
             month: 'short',
@@ -81,13 +115,18 @@ async function hydrateReleaseDownloads() {
             year: 'numeric'
           }).format(new Date(release.published_at))
         : 'latest'
-      releaseStatus.textContent = `Latest version: ${release.tag_name ?? 'QuranDesk'} · ${published}`
+      for (const releaseStatus of releaseStatuses) {
+        releaseStatus.textContent = `Latest desktop version: ${release.tag_name ?? 'QuranDesk'} · ${published}`
+      }
     }
   } catch (error) {
     console.error('Failed to fetch release info:', error)
-    if (releaseStatus) {
+    for (const link of desktopDownloadLinks) {
+      link.href = releasesUrl
+    }
+    for (const releaseStatus of releaseStatuses) {
       releaseStatus.textContent =
-        'Could not load the latest release details. The download buttons will take you to the releases page.'
+        'Could not load the latest desktop release details. Desktop download buttons will take you to the releases page.'
     }
   }
 }
@@ -100,6 +139,10 @@ function resolveAssets(assets) {
     })
   }
   return result
+}
+
+function isDesktopPlatform(value) {
+  return value === 'windows' || value === 'mac' || value === 'linux'
 }
 
 function platformName(value) {

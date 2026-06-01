@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      name="description"
+      content="Get help with QuranDesk installs, downloads, offline listening, storage, and issue reports."
+    />
+    <meta property="og:title" content="QuranDesk Support" />
+    <meta
+      property="og:description"
+      content="Help for QuranDesk installs, offline listening, downloads, storage, and issue reports."
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://qurandesk.ebeesolutions.com/support.html"
+    />
+    <meta
+      property="og:image"
+      content="https://qurandesk.ebeesolutions.com/assets/icon.png"
+    />
+    <link
+      rel="canonical"
+      href="https://qurandesk.ebeesolutions.com/support.html"
+    />
+    <link rel="icon" href="assets/icon.png" />
+    <link
+      rel="preload"
+      href="assets/fonts/Poppins-Regular.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="assets/fonts/Poppins-SemiBold.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script>
+      const savedTheme = localStorage.getItem("qurandesk-site-theme");
+      const prefersDark = matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.dataset.theme =
+        savedTheme === "light" || savedTheme === "dark"
+          ? savedTheme
+          : prefersDark
+            ? "dark"
+            : "light";
+    </script>
+    <title>Support | QuranDesk</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" data-elevated="false">
+      <nav class="nav" aria-label="Primary navigation">
+        <a class="brand" href="index.html" aria-label="QuranDesk home">
+          <img src="assets/logo.svg" alt="" width="36" height="36" />
+          <span>QuranDesk</span>
+        </a>
+        <div class="nav-links">
+          <a href="downloads.html">Downloads</a>
+          <a href="index.html#features">Benefits</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="support.html" aria-current="page">Support</a>
+        </div>
+        <div class="nav-actions">
+          <button
+            class="icon-button"
+            type="button"
+            data-theme-toggle
+            aria-label="Switch theme"
+          >
+            <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="4" />
+              <path
+                d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19"
+              />
+            </svg>
+            <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20 15.5A8.5 8.5 0 0 1 8.5 4 7 7 0 1 0 20 15.5Z" />
+            </svg>
+          </button>
+          <a class="button button-small" href="mailto:support@qurandesk.app"
+            >Email us</a
+          >
+        </div>
+      </nav>
+    </header>
+
+    <main id="main" class="page-main">
+      <section class="page-hero" aria-labelledby="support-title">
+        <p class="eyebrow">Support</p>
+        <h1 id="support-title">Help with QuranDesk</h1>
+        <p>
+          For install help, download issues, offline listening questions, or bug
+          reports, email
+          <a href="mailto:support@qurandesk.app">support@qurandesk.app</a>.
+          QuranDesk is built and supported by
+          <a href="https://ebeesolutions.com">Ebee Solutions</a>.
+        </p>
+      </section>
+
+      <section class="support-grid" aria-label="Support topics">
+        <article>
+          <h2>Install Or Update</h2>
+          <p>
+            Download desktop builds from the latest GitHub Release. Android and
+            iOS installs are delivered through Google Play and the App Store.
+          </p>
+          <a
+            class="text-link"
+            href="downloads.html"
+            >All downloads</a
+          >
+        </article>
+        <article>
+          <h2>Listen Offline</h2>
+          <p>
+            Open a reciter, download the surahs you want, and QuranDesk will
+            play downloaded audio from your device even when you are offline.
+            Internet is still needed to refresh the catalog or download new
+            audio.
+          </p>
+        </article>
+        <article>
+          <h2>Manage Downloads</h2>
+          <p>
+            QuranDesk stores audio locally. Use the app's Downloads or Settings
+            screens to review storage and delete individual surahs, reciter
+            collections, or all downloads.
+          </p>
+        </article>
+        <article>
+          <h2>Report A Problem To Ebee Solutions</h2>
+          <p>
+            When emailing support, include your device type, operating system,
+            QuranDesk version, the reciter or surah involved, and what happened
+            right before the issue appeared.
+          </p>
+          <a class="text-link" href="mailto:support@qurandesk.app"
+            >support@qurandesk.app</a
+          >
+        </article>
+      </section>
+
+      <section class="faq-section compact-faq" aria-labelledby="support-faq">
+        <div class="section-heading">
+          <p class="eyebrow">Quick answers</p>
+          <h2 id="support-faq">Before you write in</h2>
+        </div>
+        <div class="faq-list">
+          <details>
+            <summary>Why do I need internet if QuranDesk is offline?</summary>
+            <p>
+              Internet is needed to fetch the catalog and download audio. Once a
+              surah is downloaded, playback uses the local file.
+            </p>
+          </details>
+          <details>
+            <summary>Can I delete audio without uninstalling the app?</summary>
+            <p>
+              Yes. Use QuranDesk's download controls to remove downloaded audio
+              while keeping the app installed.
+            </p>
+          </details>
+          <details>
+            <summary>Does QuranDesk require an account?</summary>
+            <p>
+              No. QuranDesk does not require accounts, sign-in, subscriptions,
+              or in-app purchases.
+            </p>
+          </details>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div>
+        <a class="brand" href="index.html">
+          <img src="assets/logo.svg" alt="" width="32" height="32" />
+          <span>QuranDesk</span>
+        </a>
+        <p>
+          A quiet Qur'an recitation app by
+          <a class="studio-link" href="https://ebeesolutions.com"
+            >Ebee Solutions</a
+          >.
+        </p>
+      </div>
+      <nav aria-label="Footer navigation">
+        <a href="downloads.html">Downloads</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="support.html" aria-current="page">Support</a>
+        <a href="https://ebeesolutions.com">Ebee Solutions</a>
+      </nav>
+    </footer>
+
+    <script src="script.js" type="module"></script>
+  </body>
+</html>
