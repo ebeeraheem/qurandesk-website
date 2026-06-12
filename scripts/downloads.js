@@ -6,8 +6,7 @@ const releasesUrl = `https://github.com/${releaseRepo}/releases/latest`
 
 const mobileStoreUrls = {
   android: 'https://play.google.com/store/apps/details?id=com.ebeesolutions.qurandesk',
-  // Replace this placeholder with the final App Store URL before deployment.
-  ios: 'https://apps.apple.com/app/qurandesk/id0000000000'
+  ios: 'https://apps.apple.com/app/qurandesk/id6775770845'
 }
 
 const platformPatterns = {

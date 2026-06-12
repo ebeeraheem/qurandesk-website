@@ -545,12 +545,12 @@ h3 {
 }
 
 .studio-link {
-  display: inline-flex;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--primary) 12%, transparent);
   color: var(--primary);
-  font-weight: 700;
-  padding: 0.04rem 0.45rem;
+}
+
+.footer .studio-link:hover {
+  text-decoration: underline;
+  font-weight: 400;
 }
 
 /* ---------- Subpage scaffolding (downloads / support / privacy) ---------- */
